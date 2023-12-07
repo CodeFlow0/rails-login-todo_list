@@ -12,11 +12,17 @@ RSpec.describe UsersController, type: :controller do
         }
       }
 
-      expect(response.body).to eq({
-        user: {
-          username: 'test'
+      actual_response = JSON.parse(response.body)
+      puts "Actual response: #{actual_response}"
+
+      expected_response = {
+        "user" => {
+          "username" => "test"
         }
-      }.to_json)
+      }
+      puts "Expected response: #{expected_response}"
+
+      expect(actual_response).to eq(expected_response)
     end
   end
 end
